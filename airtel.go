@@ -2,7 +2,7 @@ package main
 
 import (
 	"flag"
-	"github.com/tylertreat/Comcast/throttler"
+	"github.com/indiantech/Airtel/throttler"
 	"log"
 	"net"
 	"strconv"

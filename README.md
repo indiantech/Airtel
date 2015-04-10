@@ -1,37 +1,37 @@
-#Comcast
+#Airtel
 
-[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tylertreat/Comcast?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/tylertreat/Airtel?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 
-Testing distributed systems under hard failures like network partitions and instance termination is critical, but it's also important we test them under [less catastrophic conditions](http://www.bravenewgeek.com/sometimes-kill-9-isnt-enough/) because this is what they most often experience. Comcast is a tool designed to simulate common network problems like latency, bandwidth restrictions, and dropped/reordered/corrupted packets.
+Testing distributed systems under hard failures like network partitions and instance termination is critical, but it's also important we test them under [less catastrophic conditions](http://www.bravenewgeek.com/sometimes-kill-9-isnt-enough/) because this is what they most often experience. Airtel is a tool designed to simulate common network problems like latency, bandwidth restrictions, and dropped/reordered/corrupted packets.
 
-It works by wrapping up some system tools in a portable(ish) way. On BSD-derived systems such as OSX, we use tools like `ipfw` and `pfctl` to inject failure. On Linux, we use `iptables` and `tc`. Comcast is merely a thin wrapper around these controls. Windows support may be possible with `wipfw` or even the native network stack, but this has not yet been implemented in Comcast and may be at a later date.
+It works by wrapping up some system tools in a portable(ish) way. On BSD-derived systems such as OSX, we use tools like `ipfw` and `pfctl` to inject failure. On Linux, we use `iptables` and `tc`. Airtel is merely a thin wrapper around these controls. Windows support may be possible with `wipfw` or even the native network stack, but this has not yet been implemented in Airtel and may be at a later date.
 
 ## Installation
 
 ```
-$ go get github.com/tylertreat/comcast
+$ go get github.com/indiantech/Airtel
 ```
 
 ## Usage
 
-Currently (on Linux), Comcast supports several options: device, latency, target/default bandwidth, packet loss, protocol, and port number
+Currently (on Linux), Airtel supports several options: device, latency, target/default bandwidth, packet loss, protocol, and port number
 
 ```
-$ comcast --device=eth0 --latency=250 --target-bw=1000 --default-bw=1000000 --packet-loss=10% --target-addr=8.8.8.8,10.0.0.0/24 --target-proto=tcp,udp,icmp --target-port=80,22,1000:2000
+$ airtel --device=eth0 --latency=250 --target-bw=1000 --default-bw=1000000 --packet-loss=10% --target-addr=8.8.8.8,10.0.0.0/24 --target-proto=tcp,udp,icmp --target-port=80,22,1000:2000
 ```
 
-On OSX/BSD (with `ipfw`), Comcast currently supports only: device, latency, target bandwidth, packet loss.
+On OSX/BSD (with `ipfw`), Airtel currently supports only: device, latency, target bandwidth, packet loss.
 This will cease to be the case in a future (soon<sup>TM</sup>) update.
 
 ```
-$ comcast --device=eth0 --latency=250 --target-bw=1000 --packet-loss=10%
+$ airtel --device=eth0 --latency=250 --target-bw=1000 --packet-loss=10%
 ```
 
 This will add 250ms of latency, limit bandwidth to 1Mbps, and drop 10% of packets to the targetted (on Linux) destination addresses using the specified protocols on the specified port numbers (slow lane). The default bandwidth specified will apply to all egress traffic (fast lane). To turn this off, run the following:
 
 ```
-$ comcast --mode stop
+$ airtel --mode stop
 ```
 
 ## I don't trust you, this code sucks, I hate Go, etc.
@@ -80,7 +80,7 @@ $ ipfw delete 1
 
 ## Network Condition Profiles
 
-Here's a list of network conditions with values that you can plug into Comcast. Please add any more that you may come across.
+Here's a list of network conditions with values that you can plug into Airtel. Please add any more that you may come across.
 
 Name | Latency | Bandwidth | Packet-loss
 :-- | --: | --: | --:
